@@ -9,11 +9,14 @@
 
     <!-- CUSTOM CSS -->
     <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="css/default.css" />
+    <link rel="stylesheet" type="text/css" href="css/default.date.css" />
 
     <!-- SCRIPTS -->
     <script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
     <script type="text/javascript" src="js/jquery-migrate-3.0.0.min.js"></script>
-
+    <script type="text/javascript" src="js/picker.js"></script>
+    <script type="text/javascript" src="js/picker.date.js"></script>
     <!-- CUSTOM JS -->
     <script type="text/javascript" src="js/custom.js"></script>
 </head>
@@ -49,7 +52,57 @@
                 <li><a href="#">Recently Exported Lists</a></li>
                 <li><a href="#">Settings</a></li>
             </ul>
+        </nav>
     </div>
+
+    <div class="container">
+        <div class="filter row">
+            <div class="col-9">
+                <form id="filter-form">
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="input-grp">
+                                <label for="">Date<i>(from)</i></label>
+                                <input type="text" value="" id="elms-filter-date-from" name="elms-filter-date-from" />
+                            </div>
+                        </div>
+
+                        <div class="col-3">
+                            <div class="input-grp">
+                                <label for=""><i>(to)</i></label>
+                                <input type="text" value="" id="elms-filter-date-to" name="elms-filter-date-to" />
+                            </div>
+                        </div>
+
+                        <div class="col-3">
+                            <div class="input-grp">
+                                <label for="">Source</label>
+                                <select id="elms-filter-select-source" name="elms-filter-select-source">
+                                    <option value="All">All</option>
+                                    <option value="Ask Our Experts">Ask Our Experts</option>
+                                    <option value="Schedule an Appointment">Schedule an Appointment</option>
+                                    <option value="Telephone Counselling">Telephone Counselling</option>
+                                    <option value="Quick Enquiry">Quick Enquiry</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-3">
+                            <input type="submit" value="Filter" name="elms-filter-submit" id="elms-filter-submit" />
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-3">
+                <button class="export-as">
+                    <i class="fa fa-download"></i><br/>
+                    Export as .CSV
+                </button>
+            </div>
+
+        </div>
     </div>
 </body>
 

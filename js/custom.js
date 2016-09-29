@@ -1,5 +1,5 @@
-$(document).ready(function(e){
+$(document).ready(function(e) {
 
-	// Code Goes Here
-
+    $("#elms-filter-date-from").pickadate();
+    $("#elms-filter-date-to").pickadate();
 });
