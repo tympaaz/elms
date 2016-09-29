@@ -1,0 +1,158 @@
+@import url('reset.css');
+@import url('grid.css');
+
+/*-----------------
+  HEADINGS
+-------------------*/
+
+h1,h2,h3,h4,h5,h6{
+	font-weight: bold;
+}
+
+h1{
+	font-size: 24px;
+	line-height: 36px;
+}
+
+h2{
+	font-size: 22px;
+	line-height: 33px;
+}
+
+h3{
+	font-size: 20px;
+	line-height: 30px;
+}
+
+h4{
+	font-size: 18px;
+	line-height: 27px;
+}
+
+h5{
+	font-size: 16px;
+	line-height: 24px;
+}
+
+h6{
+   font-size: 15px;
+   line-height: 23px;
+   text-transform: uppercase;
+}
+
+/*-----------------------
+  HYPERLINKS, PARAGRAPH
+-------------------------*/
+a,
+a:link,
+a:visited,
+a:active{
+	color: #373737;
+	text-decoration: none;
+}
+
+a:hover{
+	color: #101010;
+}
+
+p{
+	margin-bottom: 10px;
+}
+
+/*-----------------------
+  TABLES
+-------------------------*/
+
+table{
+	border: 0;
+	border-collapse: collapse;
+	width: 100%;
+	margin: 10px 0;
+}
+
+table tr th{
+background: #ccc;
+color: #373737;
+padding: 5px 10px;
+text-align: left;
+}
+
+table tr td{
+background: #fff;
+color: #373737;
+padding: 5px 10px;
+}
+
+table tr:nth-child(2n) td{
+	background: #eee;
+}
+
+
+/*-----------------------
+  Forms
+-------------------------*/
+
+form{
+ 	width: 100%;
+}
+
+form .input-grp{
+ 	margin-bottom: 10px;
+ 	
+}
+
+form label{
+	display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+form .input-grp span{
+	margin-right: 5px;
+    font-size: 13px;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="password"],
+form input[type="url"],
+form input[type="date"],
+form select,
+form textarea{
+	width: 100%;
+	padding: 5px;
+	border: 1px solid #ccc;
+	color: #373737;
+	font-size: 14px;
+	line-height: 21px;
+}
+
+
+
+form input[type="checkbox"],
+form input[type="radio"]{
+	padding: 5px;
+	color: #373737;
+	position: relative;
+    top: 2px;
+    margin-right:5px;
+}
+
+
+.success{
+	background: #;
+	border: ;
+	padding: 5px;
+}
+
+.error{
+	background: #;
+	border: ;
+	padding: 5px;
+}
+
+.error.inline{
+	display: inline;
+	color: #;
+	font-style: italic;
+}

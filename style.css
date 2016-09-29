@@ -1,0 +1,89 @@
+@import url('css/base.css');
+body {
+    font-family: "Roboto", sans-serif;
+    font-size: 14px;
+    line-height: 21px;
+    color: #373737;
+}
+
+
+/*---------------------------------------------------------
+  Login Page 
+-----------------------------------------------------------*/
+
+.elms-login-page {
+    border-top: 40px solid #ffea00;
+}
+
+
+/* Logo */
+
+.elms-login-page .logo {
+    margin: 120px 0;
+}
+
+
+/* Form */
+
+.login-form {
+    background: #3b3b3b;
+    padding: 32px;
+    color: #fff;
+    font-weight: 400;
+    margin-bottom: 120px;
+}
+
+.login-form .input-grp {
+    margin-bottom: 20px;
+}
+
+.login-form .input-grp.button {
+    margin-bottom: 0;
+}
+
+.login-form label {
+    font-weight: 400;
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"] {
+    padding: 10px;
+    border: 0;
+}
+
+.login-form input[type="submit"] {
+    background: #ffea00;
+    color: #000;
+    font-weight: 600;
+    border-radius: 3px;
+    width: 100%;
+    padding: 18px 15px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.login-form input[type="submit"]:hover {
+    background: #ebdb26;
+}
+
+
+/* Error Messages */
+
+.login-form .message {
+    padding: 5px 7px;
+    font-size: 12px;
+    border: 1px solid #ccc;
+    background: none;
+    color: #ccc;
+    margin-bottom: 12px;
+}
+
+.login-form .error {
+    border: 1px solid #f59999;
+    color: #f59999;
+}
+
+.login-form .success {
+    border: 1px solid #ddffdd;
+    color: #ddffdd;
+}
