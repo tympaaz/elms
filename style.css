@@ -193,8 +193,6 @@ nav.primary ul li a:hover {
 
 #filter-form input[type="text"],
 #filter-form select {
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
     border-radius: 3px;
     box-shadow: inset 0px 0px 2px #aeaeae;
     position: relative;
@@ -220,8 +218,6 @@ nav.primary ul li a:hover {
     color: #fff;
     display: block;
     padding: 10px 5px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
     border-radius: 5px;
     margin-top: 24px;
     font-weight: 600;
@@ -238,8 +234,6 @@ nav.primary ul li a:hover {
 }
 
 .select-styled {
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
     border-radius: 3px;
     box-shadow: inset 0px 0px 2px #aeaeae;
     position: relative;
@@ -391,7 +385,22 @@ nav.primary ul li a:hover {
     line-height: 18px;
 }
 
+.enquiries-options a:hover {
+    text-decoration: underline;
+}
+
 .enquiries-options .sep {
     margin: 0 10px;
     color: #b0afaf;
+}
+
+
+/* Recently Exported */
+
+.recently-exported {
+    background: #fbf8ec;
+}
+
+.recently-exported .title {
+    margin: 20px 0;
 }
