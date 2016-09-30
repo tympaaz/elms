@@ -6,6 +6,16 @@ body {
     color: #373737;
 }
 
+.container.fullwidth .row {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.container.fullwidth.wrap {
+    width: 100%;
+}
+
 
 /*---------------------------------------------------------
   Login Page 
@@ -115,8 +125,7 @@ body {
 
 /* Navigation - Primary */
 
-nav.primary {
-    width: 100%;
+.nav.wrap {
     background: #000;
     color: #fff;
 }
@@ -294,7 +303,85 @@ nav.primary ul li a:hover {
     color: #434343;
 }
 
+.export-as:hover {
+    background: #fadc27;
+}
+
 .export-as .fa {
     font-size: 34px;
     line-height: 51px;
+}
+
+
+/* Stats  */
+
+.stats {
+    background: #f3f3f3;
+    color: #313030;
+    border-top: 1px solid #eaeaea;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.stats-title .title {
+    font-size: 20px;
+    line-height: 30px;
+    font-weight: 600;
+}
+
+.stats-content {
+    width: 100%;
+    text-align: right;
+    padding: 3px 0;
+}
+
+.stats-content .stat {
+    display: inline;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 300;
+    margin-right: 20px;
+}
+
+.stats-content .stat .number {
+    background: #373737;
+    color: #fff;
+    padding: 2px 12px;
+    font-weight: 600;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    margin-left: 10px;
+}
+
+
+/* Enquiries */
+
+.enquiries tr th {
+    background: #fce21e;
+    color: #242424;
+}
+
+.enquiries tr td,
+.enquiries tr th {
+    border-right: 1px solid rgba(212, 212, 212, 0.33);
+    padding: 10px;
+}
+
+.enquiries tr td:first-child,
+.enquiries tr th:first-child {
+    border-left: 1px solid rgba(212, 212, 212, 0.33);
+}
+
+.enquiries tr th.no-text {
+    background: #f2de4c;
+}
+
+.enquiries .fa.fa-trash-o {
+    color: #7c7c7c;
+    padding: 3px 5px;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border: 1px solid #414141;
+    cursor: pointer;
 }
