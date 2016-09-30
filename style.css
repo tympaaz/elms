@@ -356,27 +356,27 @@ nav.primary ul li a:hover {
 
 /* Enquiries */
 
-.enquiries tr th {
+.enquiries table tr th {
     background: #fce21e;
     color: #242424;
 }
 
-.enquiries tr td,
-.enquiries tr th {
+.enquiries table tr td,
+.enquiries table tr th {
     border-right: 1px solid rgba(212, 212, 212, 0.33);
     padding: 10px;
 }
 
-.enquiries tr td:first-child,
-.enquiries tr th:first-child {
+.enquiries table tr td:first-child,
+.enquiries table tr th:first-child {
     border-left: 1px solid rgba(212, 212, 212, 0.33);
 }
 
-.enquiries tr th.no-text {
+.enquiries table tr th.no-text {
     background: #f2de4c;
 }
 
-.enquiries .fa.fa-trash-o {
+.enquiries table .fa.fa-trash-o {
     color: #7c7c7c;
     padding: 3px 5px;
     border-radius: 3px;
@@ -384,4 +384,14 @@ nav.primary ul li a:hover {
     -webkit-border-radius: 3px;
     border: 1px solid #414141;
     cursor: pointer;
+}
+
+.enquiries-options {
+    font-size: 12px;
+    line-height: 18px;
+}
+
+.enquiries-options .sep {
+    margin: 0 10px;
+    color: #b0afaf;
 }
