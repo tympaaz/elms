@@ -3,7 +3,8 @@ A simple email list management system to manage all leads / enquires at one plac
 
 ###Pages###
 1. Login
-2. Index Page
-3. Settings Page
+2. Index 
+3. Settings 
 4. Recently Exported Lists
-5. Delete History
+5. Delete History 
+
