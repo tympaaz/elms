@@ -112,7 +112,7 @@ body {
 
 .welcome-message b {
     font-size: 16px;
-    font-weight: 400;
+    font-weight: 300;
     color: #000;
     line-height: 24px;
 }
@@ -162,7 +162,7 @@ nav.primary ul li a:hover {
 
 .filter {
     background: #f3f3f3;
-    margin: 20px 0;
+    margin: 30px 0;
 }
 
 .filter .col-3 {
@@ -439,4 +439,12 @@ nav.primary ul li a:hover {
 
 .footer {
     padding: 20px 0;
+    color: #919191;
+}
+
+.footer a,
+.footer a:link,
+.footer a:visited,
+.footer a:active {
+    color: #919191;
 }

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Email List Management System - Settings</title>
+
+    <!-- GOOGLE FONTS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+    <!-- CUSTOM CSS -->
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="css/default.css" />
+    <link rel="stylesheet" type="text/css" href="css/default.date.css" />
+
+    <!-- SCRIPTS -->
+    <script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
+    <script type="text/javascript" src="js/jquery-migrate-3.0.0.min.js"></script>
+    <script type="text/javascript" src="js/picker.js"></script>
+    <script type="text/javascript" src="js/picker.date.js"></script>
+    <!-- CUSTOM JS -->
+    <script type="text/javascript" src="js/custom.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <header class="primary row">
+                    <div class="col-3">
+                        <div class="logo">
+                            <a href="index.html">
+                                <img src="images/logo.png" alt="ELMS - Logo" width="214" height="70" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-9">
+                        <div class="welcome-message right">
+                            <b>Welcome Admin, <a href="#">Logout</a></b>
+                            <p>September 29, 2016 - 1:50 PM</p>
+                        </div>
+                    </div>
+                </header>
+            </div>
+        </div>
+    </div>
+
+    <div class="nav wrap container fullwidth">
+        <nav class="primary row">
+            <ul>
+                <li><a href="index.html"><i class="fa fa-home"></i></a></li>
+                <!--
+                <li><a href="#">Recently Exported Lists</a></li>
+                <li><a href="#">Delete History</a>
+                -->
+                <li class="active"><a href="settings.html">Settings</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="page-title">Settings</h3>
+
+                    <section class="branding">
+                        <h2 class="title">Branding</h2>
+
+                        <div class="branding-logo">
+                            <h4 class="sub-title">Logo</h4>
+                            <p class="description">Upload your logo</p>
+                            <input type="upload" value="" name="elms-cp-upload" id="elms-cp-upload" />
+                        </div>
+
+                        <div class="branding-theme">
+                            <h4 class="sub-title">Choose a theme</h4>
+                            <p class="description">Select one of the predefined themes which matches your site design</p>
+                            <select name="elms-bt-theme" id="elms-bt-theme">
+                                <option value="red">Kansas Red</option>
+                                <option value="orange">Immitech Orange</option>
+                                <option value="yellow" selected>ELMS Yellow</option>
+                            </select>
+                        </div>
+
+                    </section>
+
+                    <section class="change-password">
+                        <h2 class="title">Change Password</h2>
+
+                        <div class="old-pass">
+                            <h4 class="sub-title">Old Password</h4>
+                            <p class="description">Enter your Old Password</p>
+
+                            <input type="text" value="" name="elms-cp-oldpass" id="elms-cp-oldpass" />
+                        </div>
+
+                        <div class="new-pass">
+                            <h4 class="sub-title">New Password</h4>
+                            <p class="description">Enter your New Password</p>
+
+                            <input type="text" value="" name="elms-cp-newpass" id="elms-cp-newpass" />
+                        </div>
+
+                        <div class="confirm-new-pass">
+                            <h4 class="sub-title">Confirm New Password</h4>
+                            <p class="description">Re-enter your New Password</p>
+
+                            <input type="text" value="" name="elms-cp-confirm-newpass" id="elms-cp-confirm-newpass" />
+                        </div>
+                    </section>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer container">
+        <div class="row">
+            <div class="col-12 center">
+                &copy; <a href="#">Kansas Overseas Careers - 2016</a>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
