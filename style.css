@@ -29,7 +29,7 @@ body {
 /* Logo */
 
 .elms-login-page .logo {
-    margin: 120px 0;
+    margin: 70px 0;
 }
 
 
@@ -394,6 +394,10 @@ nav.primary ul li a:hover {
     color: #b0afaf;
 }
 
+.enquiries-tbl {
+    margin-bottom: 40px;
+}
+
 
 /* Recently Exported */
 
@@ -403,4 +407,36 @@ nav.primary ul li a:hover {
 
 .recently-exported .title {
     margin: 20px 0;
+}
+
+.re-lists {
+    margin-bottom: 30px;
+}
+
+.re-lists tr th {
+    background: #545454;
+    color: #fff;
+}
+
+.re-lists tr td {
+    position: relative;
+    border-bottom: 1px solid #fbf8ec;
+}
+
+.re-lists tr td .download-btn {
+    background: #fee47a;
+    color: #313030;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 5px 15px;
+}
+
+
+/*-----------------------------------------------------
+    Footer
+-------------------------------------------------------*/
+
+.footer {
+    padding: 20px 0;
 }
