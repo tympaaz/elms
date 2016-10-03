@@ -1,6 +1,6 @@
 <?php
-require_once('Application.php');
-require_once('Database.php');
+require_once('classes/Application.php');
+require_once('classes/Database.php');
 class Leads extends Application{
     private $_table="quick_enquiry";
     private $_table1="login";
