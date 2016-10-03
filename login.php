@@ -1,3 +1,54 @@
+<?php
+session_start();
+$error ="";
+  if (isset($_SESSION['user'])) {
+            $name=$_SESSION['user'];
+            $pass=$_SESSION['pass'];
+            require_once('classes/Leads.php');
+$obj=new Leads;
+$auth=$obj->get_valid($name,$pass);
+if($auth){
+    header('location:index.php');
+    if(isset($_POST['elms-submit'])){
+      $name=$_POST['elms-username'];
+      $pass=$_POST['elms-password'];
+      $_SESSION['user']=$name;
+      $_SESSION['pass']=$pass;
+      $obj=new Leads();
+      $login=$obj->login_details($name,$pass);
+   if($login)
+   {
+        echo $name ;
+    header('location:index.php');
+   }
+   
+   } ?>
+<?php }
+
+        }
+require_once('classes/Leads.php');
+ if(isset($_POST['elms-submit'])){
+      $name=$_POST['elms-username'];
+      $pass=$_POST['elms-password'];
+      $_SESSION['user']=$name;
+      $_SESSION['pass']=$pass;
+      $obj=new Leads();
+      $login=$obj->login_details($name,$pass);
+   if($login)
+   {
+    header('location:index.php');
+   }
+   else
+   {
+       if(empty($name) && empty($pass)){
+           $error = "<div class='error message'>". 'Username and Password are Empty'. "</div>";
+       }else if(!$login){
+           $error = "<div class='error message'>". 'Username and Password doesnt match'. "</div>"; 
+       }
+   }
+
+   }
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,22 +77,7 @@
 				</div>
 
 				<div class="login-form">
-
-				    <!--
-					*  -------------------------------------------
-					*    Error Message Markup
-					*  -------------------------------------------
-                    <div class="error message">
-                    	Username and Password doesnt match
-                    </div>
-
-                    *  -------------------------------------------
-					*    Success Message Markup
-					*  -------------------------------------------
-                    <div class="success message">
-                    	Successfully Logged In
-                    </div>
-                    -->
+                    <?php echo $error; ?>
 					<form id="elms-login-form" action="" method="post">
 						<div class="input-grp">
 							<label for="username">Username</label>
