@@ -144,15 +144,21 @@ form input[type="radio"] {
 }
 
 .success {
-    background: #;
-    border: ;
-    padding: 5px;
+    background: #e8ffe8;
+    border: 1px solid #c1efc1;
+    padding: 3px 10px;
+    margin-top: 15px;
+    font-size: 13px;
+    line-height: 19px;
 }
 
 .error {
-    background: #;
-    border: ;
-    padding: 5px;
+    background: #ffe8e8;
+    border: 1px solid #efc1c1;
+    padding: 3px 10px;
+    margin-top: 15px;
+    font-size: 13px;
+    line-height: 19px;
 }
 
 .error.inline {
