@@ -1,3 +1,32 @@
+<?php 
+session_start();
+if (isset($_SESSION['user'])) {
+    $name=$_SESSION['user'];
+    $pass=$_SESSION['pass'];
+require_once('classes/Leads.php');
+$obj=new Leads;
+$auth=$obj->get_valid($name,$pass);
+if(!$auth){
+    header('location:classes/Auth.php');;
+}
+$leads=$obj->getAllleads($date);
+$new=$obj->new_leads();
+$old=$obj->old_leads();
+$today=$obj->today_leads($date);
+if(isset($_POST['submit'])){
+    if(isset($_POST['checked_id'])){
+    $deletemul=$obj->Delete();
+}else{
+    echo "Please Select Deleted Leads";
+}
+}
+if(isset($_POST['export'])){    
+   $_SESSION['date']=$_POST['fromdate'];
+    $_SESSION['dateto']=$_POST['todate'];
+    $_SESSION['source']=$_POST['source'];
+    header("location:classes/Export.php");
+}
+?>
 <?php require_once('templates/header.php'); ?>
 
     <div class="container">
@@ -9,7 +38,12 @@
                             <div class="input-grp">
                                 <label for="" class="lbl-elms-filter-date-from">Date<i>(from)</i></label>
                                 <i class="fa fa-calendar-o"></i>
-                                <input type="text" value="" id="elms-filter-date-from" name="elms-filter-date-from" />
+                                <input type="text" value="" id="elms-filter-date-from" name="elms-filter-date-from" /> 
+                            </div>
+
+                            <div class="input-grp">
+                                 <label for="" class="lbl-elms-filter-date-from">Date<i>(from)</i></label>
+                                <input type="date" id="fromdate" class="form-control" name='fromdate' value="<?php echo date('Y-m-d'); ?>"/>
                             </div>
                         </div>
 
@@ -18,6 +52,11 @@
                                 <label for="" class="lbl-elms-filter-date-to"><i>(to)</i></label>
                                 <i class="fa fa-calendar-o"></i>
                                 <input type="text" value="" id="elms-filter-date-to" name="elms-filter-date-to" />
+                            </div>
+
+                            <div class="input-grp">
+                                <label for="" class="lbl-elms-filter-date-to"><i>(to)</i></label>
+                               <input type="date" id="todate" class="form-control" name='todate' value="<?php echo date('Y-m-d'); ?>"/>
                             </div>
                         </div>
 
@@ -266,4 +305,7 @@
         </div>
     </div>
     
-<?php require_once('templates/footer.php'); ?>
+<?php require_once('templates/footer.php'); 
+}else{
+     header('location:classes/Auth.php');
+} ?>

@@ -21,29 +21,29 @@ class Database{
 	
 	public  function connect(){
 	  
-		$this->_conndb = mysqli_connect($this->_host,$this->_user);
+		$this->_conndb = mysqli_connect($this->_host,$this->_user,$this->_password);
 		  
 	  if(!$this->_conndb) 
 	  {
-		die ("Error connecting to database:<br />" . mysqli_error());
+		die ("Error connecting to database:<br />" );
 	  }
 	  else{
-		$_select = mysqli_select_db( $this->_conndb,$this->_db);
+		$_select = mysqli_select_db($this->_conndb,$this->_db);
 		if(!$_select) {
-			die("Database Selection failed:<br />" . mysqli_error());
+			die("Database Selection failed:<br />" );
 		}
 	  }
 	  mysqli_set_charset($this->_conndb,"utf8");
 	}
 
         public function close() {			
-        if(!mysqli($this->_conndb)) {
+        if(!mysqli_close($this->_conndb)) {
                 die("Closing connection failed.");
         }
 	}
 	
 	public function escape($value) {			
-		if(function_exists("mysqli_real_escape_string")) {			
+		if(function_exists("mysql_real_escape_string")) {			
 			if(get_magic_quotes_gpc()) {
 				$value = stripslashes($value);			
 			}
@@ -65,14 +65,14 @@ class Database{
 	
 	public function queryNumRows($sql) {	
 		$this->_last_query = $sql;
-		$result = mysqli_query($sql, $this->_conndb);	
-		$count=mysqli_num_rows($res);		
+		$result = mysqli_query($this->_conndb,$sql);	
+		$count=mysql_num_rows($res);		
 		return $count;
 	}
 	
 	public function displayQuery($result) {
 		if(!$result) {
-			$output  = "Database query failed: ";
+			$output  = "Database query failed:";
 			$output  .= "Last SQL query was: ". $this->_last_query;
 			die($output);
 		} else {

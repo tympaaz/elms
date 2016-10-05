@@ -17,14 +17,14 @@ Class Auth{
 $obj=new Leads;
 $auth=$obj->get_valid($name,$pass);
 if(!$auth){
-    header('location:Login.php');;
+    header('location:../login.php');;
 }else{
 //        else if($login){
-            header('location:index.php');
+            header('location:../index.php');
 }
 //        }
         }else{
-            header('location:Login.php');;
+            header('location:../login.php');;
         }
     }
 }

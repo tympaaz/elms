@@ -115,6 +115,7 @@ body {
     font-weight: 300;
     color: #000;
     line-height: 24px;
+    text-transform: capitalize;
 }
 
 .welcome-message p {

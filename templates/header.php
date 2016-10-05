@@ -35,8 +35,8 @@
                     </div>
                     <div class="col-9">
                         <div class="welcome-message right">
-                            <b>Welcome Admin, <a href="#">Logout</a></b>
-                            <p>September 29, 2016 - 1:50 PM</p>
+                            <b>Welcome <?php echo $_SESSION['user']; ?>, <a href="logout.php">Logout</a></b>
+                            <p> <span id="hours">0</span>:<span id="minutes">0</span></p>
                         </div>
                     </div>
                 </header>
