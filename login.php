@@ -77,7 +77,7 @@ require_once('classes/Leads.php');
 				</div>
 
 				<div class="login-form">
-                    <?php echo $error; ?>
+                    
 					<form id="elms-login-form" action="" method="post">
 						<div class="input-grp">
 							<label for="username">Username</label>
@@ -94,6 +94,7 @@ require_once('classes/Leads.php');
 						</div>
 					</form>
 				</div>
+                <?php echo $error; ?>
 			</div>
 		</div>
 	</div>
