@@ -21,10 +21,10 @@ if(isset($_POST['submit'])){
 }
 }
 if(isset($_POST['export'])){    
-   $_SESSION['date']=$_POST['fromdate'];
-    $_SESSION['dateto']=$_POST['todate'];
-    $_SESSION['source']=$_POST['source'];
-    header("location:classes/Export.php");
+   $_SESSION['date']=$_POST['elms-filter-date-from'];
+    $_SESSION['dateto']=$_POST['elms-filter-date-to'];
+    $_SESSION['source']=$_POST['elms-filter-select-source'];
+    header("location:export.php");
 }
 ?>
 <?php require_once('templates/header.php'); ?>
@@ -32,31 +32,19 @@ if(isset($_POST['export'])){
     <div class="container">
         <div class="filter row">
             <div class="col-9">
-                <form id="filter-form">
+                <form id="filter-form" action="">
                     <div class="row">
                         <div class="col-3">
                             <div class="input-grp">
                                 <label for="" class="lbl-elms-filter-date-from">Date<i>(from)</i></label>
-                                <i class="fa fa-calendar-o"></i>
-                                <input type="text" value="" id="elms-filter-date-from" name="elms-filter-date-from" /> 
-                            </div>
-
-                            <div class="input-grp">
-                                 <label for="" class="lbl-elms-filter-date-from">Date<i>(from)</i></label>
-                                <input type="date" id="fromdate" class="form-control" name='fromdate' value="<?php echo date('Y-m-d'); ?>"/>
+                                <input type="date" value="" id="elms-filter-date-from" class="form-control" name="elms-filter-date-from"  value="<?php echo date('Y-m-d'); ?>"/> 
                             </div>
                         </div>
 
                         <div class="col-3">
                             <div class="input-grp">
                                 <label for="" class="lbl-elms-filter-date-to"><i>(to)</i></label>
-                                <i class="fa fa-calendar-o"></i>
-                                <input type="text" value="" id="elms-filter-date-to" name="elms-filter-date-to" />
-                            </div>
-
-                            <div class="input-grp">
-                                <label for="" class="lbl-elms-filter-date-to"><i>(to)</i></label>
-                               <input type="date" id="todate" class="form-control" name='todate' value="<?php echo date('Y-m-d'); ?>"/>
+                                <input type="date" value="" id="elms-filter-date-to" class="form-control" name="elms-filter-date-to" value="<?php echo date('Y-m-d'); ?>" />
                             </div>
                         </div>
 
@@ -82,7 +70,7 @@ if(isset($_POST['export'])){
             </div>
 
             <div class="col-3">
-                <button class="export-as">
+                <button class="export-as" name="export" id="export">
                     <i class="fa fa-download"></i><br/>
                     Export as .CSV
                 </button>
@@ -103,13 +91,10 @@ if(isset($_POST['export'])){
             <div class="col-6">
                 <div class="stats-content">
                     <div class="stat">
-                        New <span class="number">100</span>
+                        New <span class="number" id="new"><?php echo count($today); ?></span>
                     </div>
                     <div class="stat">
-                        Last Exported <span class="number">200</span>
-                    </div>
-                    <div class="stat">
-                        Total <span class="number">300</span>
+                        Total <span class="number" id="total"><?php echo count($leads); ?></span>
                     </div>
                 </div>
             </div>
@@ -121,9 +106,9 @@ if(isset($_POST['export'])){
         <div class="row">
             <div class="col-12">
                 <div class="enquiries-options">
-                    <a href="#">Select All</a><span class="sep">|</span><a href="#">Delete All</a><span class="sep">|</span><a href="#">Delete Selected</a>
+                    <input type="checkbox" id="checkAll" />Select All<span class="sep">|</span><input type="submit" name="submit" id="submit" value="Delete All" />
                 </div>
-                <table class="enquiries-tbl">
+                <table class="enquiries-tbl" id="filter">
                     <tr>
                         <th class="no-text"></th>
                         <th class="center">S.No</th>
@@ -135,137 +120,45 @@ if(isset($_POST['export'])){
                         <th class="no-text"></th>
                     </tr>
 
-                    <tr>
-                        <td><input type="checkbox" class="del del-12" /></td>
-                        <td class="center">1</td>
-                        <td>John Doe</td>
-                        <td>me@johndoe.com</td>
-                        <td>9000900012</td>
-                        <td>Canada</td>
-                        <td>I am interested in Canada PR. Can you please provide me more details</td>
-                        <td><i class="fa fa-trash-o"></i></td>
-                    </tr>
-
-                    <tr>
-                        <td><input type="checkbox" class="del del-13" /></td>
-                        <td class="center">2</td>
-                        <td>Paul Adams</td>
-                        <td>paul@adams.com</td>
-                        <td>9000900012</td>
-                        <td>Australia</td>
-                        <td>Can you please provide me more details</td>
-                        <td><i class="fa fa-trash-o"></i></td>
-                    </tr>
-
-                    <tr>
-                        <td><input type="checkbox" class="del del-14" /></td>
-                        <td class="center">3</td>
-                        <td>Ninna Williams</td>
-                        <td>nw@johndoe.com</td>
-                        <td>9000900012</td>
-                        <td>Canada</td>
-                        <td>I am interested in Canada PR. Can you please provide me more details</td>
-                        <td><i class="fa fa-trash-o"></i></td>
-                    </tr>
-
-                    <tr>
-                        <td><input type="checkbox" class="del del-15" /></td>
-                        <td class="center">4</td>
-                        <td>Jin Kazama</td>
-                        <td>jin@kjin.com</td>
-                        <td>9000900012</td>
-                        <td>Hongkong</td>
-                        <td>I am interested in Canada PR. Can you please provide me more details</td>
-                        <td><i class="fa fa-trash-o"></i></td>
-                    </tr>
-
-                    <tr>
-                        <td><input type="checkbox" class="del del-12" /></td>
-                        <td class="center">5</td>
-                        <td>John Doe</td>
-                        <td>me@johndoe.com</td>
-                        <td>9000900012</td>
-                        <td>Canada</td>
-                        <td>I am interested in Canada PR. Can you please provide me more details</td>
-                        <td><i class="fa fa-trash-o"></i></td>
-                    </tr>
-
-                    <tr>
-                        <td><input type="checkbox" class="del del-13" /></td>
-                        <td class="center">6</td>
-                        <td>Paul Adams</td>
-                        <td>paul@adams.com</td>
-                        <td>9000900012</td>
-                        <td>Australia</td>
-                        <td>Can you please provide me more details</td>
-                        <td><i class="fa fa-trash-o"></i></td>
-                    </tr>
-
-                    <tr>
-                        <td><input type="checkbox" class="del del-14" /></td>
-                        <td class="center">7</td>
-                        <td>Ninna Williams</td>
-                        <td>nw@johndoe.com</td>
-                        <td>9000900012</td>
-                        <td>Canada</td>
-                        <td>I am interested in Canada PR. Can you please provide me more details</td>
-                        <td><i class="fa fa-trash-o"></i></td>
-                    </tr>
-
-                    <tr>
-                        <td><input type="checkbox" class="del del-15" /></td>
-                        <td class="center">8</td>
-                        <td>Jin Kazama</td>
-                        <td>jin@kjin.com</td>
-                        <td>9000900012</td>
-                        <td>Hongkong</td>
-                        <td>I am interested in Canada PR. Can you please provide me more details</td>
-                        <td><i class="fa fa-trash-o"></i></td>
-                    </tr>
-
-                    <tr>
-                        <td><input type="checkbox" class="del del-12" /></td>
-                        <td class="center">9</td>
-                        <td>John Doe</td>
-                        <td>me@johndoe.com</td>
-                        <td>9000900012</td>
-                        <td>Canada</td>
-                        <td>I am interested in Canada PR. Can you please provide me more details</td>
-                        <td><i class="fa fa-trash-o"></i></td>
-                    </tr>
-
-                    <tr>
-                        <td><input type="checkbox" class="del del-13" /></td>
-                        <td class="center">10</td>
-                        <td>Paul Adams</td>
-                        <td>paul@adams.com</td>
-                        <td>9000900012</td>
-                        <td>Australia</td>
-                        <td>Can you please provide me more details</td>
-                        <td><i class="fa fa-trash-o"></i></td>
-                    </tr>
-
-                    <tr>
-                        <td><input type="checkbox" class="del del-14" /></td>
-                        <td class="center">11</td>
-                        <td>Ninna Williams</td>
-                        <td>nw@johndoe.com</td>
-                        <td>9000900012</td>
-                        <td>Canada</td>
-                        <td>I am interested in Canada PR. Can you please provide me more details</td>
-                        <td><i class="fa fa-trash-o"></i></td>
-                    </tr>
-
-                    <tr>
-                        <td><input type="checkbox" class="del del-15" /></td>
-                        <td class="center">12</td>
-                        <td>Jin Kazama</td>
-                        <td>jin@kjin.com</td>
-                        <td>9000900012</td>
-                        <td>Hongkong</td>
-                        <td>I am interested in Canada PR. Can you please provide me more details</td>
-                        <td><i class="fa fa-trash-o"></i></td>
-                    </tr>
+            <?php foreach($today as $lead){ ?>
+            <tr>
+                <td><input type="checkbox" name="checked_id[]" class="checkbox" value="<?php echo $lead['id']; ?>"/></td>
+                <td class="center">
+                    <?php
+                    static $id=1;
+                    echo( $id++)."(".$lead['id'].")";
+                    ?> 
+                </td>
+                <td>
+                    <?php 
+                    echo $lead['name'];
+                    ?>
+                </td>
+                 <td>
+                    <?php 
+                    echo $lead['email'];
+                    ?>
+                </td>
+                 <td>
+                    <?php 
+                    echo $lead['phone'];
+                    ?>
+                </td>
+                 <td>
+                    <?php 
+                    echo $lead['interested_country'];
+                    ?>
+                </td>
+                 <td>
+                    <?php 
+                    echo $lead['message'];
+                    ?>
+                </td>
+                <td>
+                    <a href="delete.php?id=<?php echo $lead['id'] ?>" class="fa fa-trash"></a>
+                </td>
+            </tr>
+            <?php } ?>
                 </table>
             </div>
         </div>

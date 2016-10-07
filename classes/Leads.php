@@ -8,6 +8,7 @@ class Leads extends Application{
     private $_table="elms_enquiries";
     private $_table1="elms_users";
     private $_table2="elms_uploads";
+    private $_table3="elms_settings";
     public $_id;
    
      public function getAllleads($date) {
@@ -17,6 +18,7 @@ class Leads extends Application{
 //        $sql .= " ORDER BY `id`";
         return $this->db->fetchAll($sql);
     }
+    
     public function today_leads($date){
          $sql = "SELECT * FROM `{$this->_table}` ";
         $sql.="Where `trash`=0";
@@ -116,6 +118,26 @@ public function Getall_leads($date,$dateto,$source){
       $sql="select * from `{$this->_table1}` where name='".$name."' AND password='".$pass."'";
          return $this->db->fetchrow($sql);
   }
+   public function insert($param=null,$id=18){
+        if(!empty($param)){
+            $this->db->prepareUpdate($param);
+            if($this->db->update($this->_table3,18)){
+                return true;
+            }
+        }
+    }
+    public function get_logo(){
+        $sql="select * from `{$this->_table3}`";
+        return $this->db->fetchAll($sql);
+        return true;
+    }
+ public function updatepass($id,$param=null){
+     if(!empty($param) && !empty($id)){
+         $sql="update `{$this->_table1}` SET password='".$param."' where id='".$id."'" ;
+           return $this->db->query($sql);
+        return true;
+     }
+ }
  
 }
 

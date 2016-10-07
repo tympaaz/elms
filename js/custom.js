@@ -1,19 +1,5 @@
 $(document).ready(function(e) {
 
-    $("#elms-filter-date-from").pickadate({
-        onStart: function() {
-            var date = new Date();
-            this.set('select', [date.getFullYear(), date.getMonth(), date.getDate()]);
-        }
-    });
-
-    $("#elms-filter-date-to").pickadate({
-        onStart: function() {
-            var date = new Date();
-            this.set('select', [date.getFullYear(), date.getMonth(), date.getDate()]);
-        }
-    });
-
 
     $('#elms-filter-select-source').each(function() {
         var $this = $(this),
@@ -66,16 +52,16 @@ $(document).ready(function(e) {
     setInterval(ajaxcall, 1000);
 
     $('#elms-filter-submit').click(function() {
-        var date = $('#fromdate').val();
-        var dateto = $('#todate').val();
-        var source = $('#source').val();
+        var date = $('#elms-filter-date-from').val();
+        var dateto = $('#elms-filter-date-to').val();
+        var source = $('#elms-filter-select-source').val();
 
         if (dateto < date) {
             alert('2nd date picker must be greater than 1st one.')
         } else {
             //              $('#myVariable').datepicker({dateFormat: 'dd/mm/yy'});
-            var date = $('#fromdate').val();
-            var dateto = $('#todate').val();
+            var date = $('#elms-filter-date-from').val();
+            var dateto = $('#elms-filter-date-to').val();
 
             $.ajax({
                 url: "http://localhost/elms/ajax.php/",
@@ -87,7 +73,7 @@ $(document).ready(function(e) {
                     $('#new').html(obj.length);
                     $('#filter').empty();
 
-                    $('#filter').append('<tr><th></th><th>Sno</th><th>Name</th><th>Email</th><th>Phone</th><th>Country</th><th>Message</th><th></th></tr>');
+                    $('#filter').append('<tr><th></th><th>S.No</th><th>Name</th><th>Email</th><th>Phone</th><th>Country</th><th>Message</th><th></th></tr>');
                     var counter = 0;
                     $.each(obj, (function(res, k) {
                         $('#filter').append('<tr><td align="center"><input type="checkbox" name="checked_id[]" class="checkbox" value="' + k.id + '"/></td><td value="' + k.id + '">' + (++counter) + "(" + k.id + ")" + '</td><td value="' + k.name + '">' + k.name + '</td><td value="' + k.email + '">' + k.email + '</td><td value="' + k.phone + '">' + k.phone + '</td><td value="' + k.interested_country + '">' + k.interested_country + '</td><td value="' + k.message + '">' + k.message + '</td><td><a href="delete.php?id=' + k.id + '"class="fa fa-trash"></a></td></tr>')

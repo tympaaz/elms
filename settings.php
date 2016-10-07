@@ -1,3 +1,50 @@
+<?php 
+session_start();
+if (isset($_SESSION['user'])) {
+require_once('templates/header.php'); 
+require_once('classes/Leads.php');
+if(isset($_POST['btn'])){
+    $target= 'images/'.$_FILES['elms-bt-upload']['name'];
+    $theme= 'css/themes/'.$_POST['elms-bt-theme'].".css";
+    $req= array(
+        'logo_path'=>$target,
+        'theme_path'=>$theme
+    );
+
+    if(!empty($req)){
+        $uploads_dir = 'images/';
+        (move_uploaded_file($_FILES['elms-bt-upload']['tmp_name'], $uploads_dir.$_FILES['elms-bt-upload']['name']));
+        $obj=new Leads();
+        $obj->insert($req);
+    }else{
+        echo"please Choose File";
+    }
+}
+
+if(isset($_POST['submit'])){
+    $obj=new Leads();
+    $old_pass=$_POST['elms-cp-oldpass'];
+    $name = $_SESSION['user'];
+    $pass = $_SESSION['pass'];
+    $login=$obj->login_details($name,$pass);
+    $id=$login[0][0];
+    $new_pass=$_POST['elms-cp-newpass'];
+    $cnfrm_pass=$_POST['elms-cp-confirm-newpass'];
+    
+    if($old_pass == $pass){
+         if($new_pass == $cnfrm_pass){
+             $obj->updatepass($id,$new_pass);
+             unset($_SESSION["user"]);
+             header("location:classes/Auth.php");
+         }
+         else{
+             echo "New Password & Confirm password Missmatch";
+         }
+     }else{
+         echo"Enter Valid Password";
+     }   
+}
+?>
 <?php require_once('templates/header.php'); ?>
     <div class="container">
         <div class="row">
@@ -7,7 +54,7 @@
                     <section class="main branding">
                         <h2 class="title">Branding</h2>
 
-                        <form action="" id="elms-bt-form" method="post">
+                        <form action="settings.php" id="elms-bt-form" method="post" enctype="multipart/form-data">
 
                             <div class="sub branding-logo">
                                 <h4 class="sub-title">Logo</h4>
@@ -26,7 +73,7 @@
                             </div>
 
                             <div class="save-options">
-                                <input type="submit" value="Save" id="elms-bt-submit" />
+                                <input type="submit" value="Save" name="btn" id="elms-bt-submit" />
                             </div>
 
                             <!--
@@ -52,7 +99,7 @@
 
                     <section class="main change-password">
                         <h2 class="title">Change Password</h2>
-                        <form action="" id="elms-cp-form" method="post">
+                        <form action="settings.php" id="elms-cp-form" method="post">
                             <div class="sub old-pass">
                                 <h4 class="sub-title">Old Password</h4>
                                 <p class="description">Enter your Old Password</p>
@@ -72,7 +119,7 @@
                             </div>
 
                             <div class="save-options">
-                                <input type="submit" value="Save" id="elms-bt-submit" />
+                                <input type="submit" value="Save" name="submit" id="elms-bt-submit" />
                             </div>
 
                             <!--
@@ -99,4 +146,7 @@
             </div>
         </div>
     </div>
-<?php require_once('templates/footer.php'); ?>
+<?php require_once('templates/footer.php');
+}else{
+     header('location:classes/Auth.php');
+}?>

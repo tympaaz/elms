@@ -1,3 +1,14 @@
+<?php 
+//session_start();
+if (isset($_SESSION['user'])) {
+    $name=$_SESSION['user'];
+    $pass=$_SESSION['pass'];
+require_once('classes/Leads.php');
+$obj=new Leads();
+$logo=$obj->get_logo();
+}
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -11,6 +22,7 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
     <link rel="stylesheet" type="text/css" href="css/default.css" />
     <link rel="stylesheet" type="text/css" href="css/default.date.css" />
+    <link rel="stylesheet" type="text/css" href="<?php echo $logo[0]['theme_path']; ?>" />
 
     <!-- SCRIPTS -->
     <script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
@@ -29,7 +41,7 @@
                     <div class="col-3">
                         <div class="logo">
                             <a href="index.php">
-                                <img src="images/logo.png" alt="ELMS - Logo" width="214" height="70" />
+                                <img src="<?php echo $logo[0]['logo_path']; ?>" alt="ELMS - Logo" width="214" height="70" />
                             </a>
                         </div>
                     </div>

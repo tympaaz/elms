@@ -5,13 +5,19 @@ class Database{
 	private $_host = "localhost";
 	private $_user = "root"; 
 	private $_password = "";
-        private $_db="elms";
+        private $_db="elms_dev";
 	private $_conndb    = false;  
 	public $_last_query  = null;  
         public $_insert_keys   = array();  
         public $_affected_rows = 0; 
 	public $_insert_values = array(); 
 	public $_update_sets = array(); 
+        
+        
+        public $_files = array();
+	public $_overwrite = false;
+	public $_errors = array();
+	public $_names = array();
     
 	private $_table="quick_enquiry";
 	public function __construct()
@@ -43,11 +49,11 @@ class Database{
 	}
 	
 	public function escape($value) {			
-		if(function_exists("mysql_real_escape_string")) {			
+		if(function_exists("mysqli_real_escape_string")) {			
 			if(get_magic_quotes_gpc()) {
 				$value = stripslashes($value);			
 			}
-			$value = mysqli_real_escape_string($value);
+			$value = mysqli_real_escape_string($this->_conndb,$value);
 		} else {
 			if(!get_magic_quotes_gpc()) {
 				$value = addcslashes($value);
@@ -161,8 +167,42 @@ class Database{
 		}
 			
 	}
-      
-	
+         public function getUploads() {
+		if(!empty($_FILES)) {
+			foreach($_FILES as $key => $value) {
+				$this->_files[$key] = $value;                                
+			}  
+		}   
+	}
+		public function upload($path = null) {
+		//made changes from actual code is_dir not working
+		if(!empty($path) && is_dir($path) && !empty($this->_files)) {
+			
+			
+			
+			foreach($this->_files as $key => $value) {
+				$name = Helper::cleanString($value['name']);
+				
+				
+					//made changes from actual code is_dir not working
+				if($this->_overwrite == false) {
+					$prefix = date('YmdHis', time());
+					$name = $prefix."-".$name;	
+					$this->_filename = $name;
+				}
+				if(!move_uploaded_file($value['tmp_name'], $path.DS.$name)) {
+					$this->_errors[] = $key;
+					
+					
+				}	
+				$this->_names[] = $name;
+			}	
+			return ($this->_filename);
+			return empty($this->_errors) ? true : false;
+		}
+		return false;
+			
+	}
 }
 
 ?>
