@@ -73,10 +73,10 @@ $(document).ready(function(e) {
                     $('#new').html(obj.length);
                     $('#filter').empty();
 
-                    $('#filter').append('<tr><th></th><th>S.No</th><th>Name</th><th>Email</th><th>Phone</th><th>Country</th><th>Message</th><th></th></tr>');
+                    $('#filter').append('<tr><th class="no-text"></th><th class="center">S.No</th><th>Name</th><th>Email Address</th><th>Phone Number</th><th>Interested Country</th><th>Message</th><th class="no-text"></th></tr>');
                     var counter = 0;
                     $.each(obj, (function(res, k) {
-                        $('#filter').append('<tr><td align="center"><input type="checkbox" name="checked_id[]" class="checkbox" value="' + k.id + '"/></td><td value="' + k.id + '">' + (++counter) + "(" + k.id + ")" + '</td><td value="' + k.name + '">' + k.name + '</td><td value="' + k.email + '">' + k.email + '</td><td value="' + k.phone + '">' + k.phone + '</td><td value="' + k.interested_country + '">' + k.interested_country + '</td><td value="' + k.message + '">' + k.message + '</td><td><a href="delete.php?id=' + k.id + '"class="fa fa-trash"></a></td></tr>')
+                        $('#filter').append('<tr><td class="center"><input type="checkbox" name="checked_id[]" class="checkbox" value="' + k.id + '"/></td><td class="center" value="' + k.id + '">' + (++counter) + "<span class='enq-id'>" + k.id + "</span>" + '</td><td value="' + k.name + '">' + k.name + '</td><td value="' + k.email + '">' + k.email + '</td><td value="' + k.phone + '">' + k.phone + '</td><td value="' + k.interested_country + '">' + k.interested_country + '</td><td value="' + k.message + '">' + k.message + '</td><td><a href="delete.php?id=' + k.id + '"class="fa fa-trash"></a></td></tr>')
 
                     }));
                 }

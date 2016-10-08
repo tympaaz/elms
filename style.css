@@ -357,6 +357,19 @@ nav.primary ul li a:hover {
     color: #242424;
 }
 
+.enq-id {
+    font-size: 10px;
+    margin-top: 5px;
+    background: #e1e1e1;
+    padding: 0 5px;
+    display: block;
+    line-height: 15px;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    color: #747070;
+}
+
 .enquiries table tr td,
 .enquiries table tr th {
     border-right: 1px solid rgba(212, 212, 212, 0.33);
@@ -394,6 +407,22 @@ nav.primary ul li a:hover {
 .enquiries-options .sep {
     margin: 0 10px;
     color: #b0afaf;
+}
+
+.enquiries-options #checkAll {
+    margin-right: 5px;
+    position: relative;
+    top: 2px;
+}
+
+.enquiries-options #submit {
+    background: none;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.enquiries-options #submit:hover {
+    text-decoration: underline;
 }
 
 .enquiries-tbl {

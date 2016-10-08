@@ -30,21 +30,22 @@ if(isset($_POST['export'])){
 <?php require_once('templates/header.php'); ?>
 
     <div class="container">
+    <form id="filter-form" action="" method="post">
         <div class="filter row">
             <div class="col-9">
-                <form id="filter-form" action="">
+                
                     <div class="row">
                         <div class="col-3">
                             <div class="input-grp">
                                 <label for="" class="lbl-elms-filter-date-from">Date<i>(from)</i></label>
-                                <input type="date" value="" id="elms-filter-date-from" class="form-control" name="elms-filter-date-from"  value="<?php echo date('Y-m-d'); ?>"/> 
+                                <input type="date" id="elms-filter-date-from" class="form-control" name="elms-filter-date-from"  value="<?php echo date('Y-m-d'); ?>"/> 
                             </div>
                         </div>
 
                         <div class="col-3">
                             <div class="input-grp">
                                 <label for="" class="lbl-elms-filter-date-to"><i>(to)</i></label>
-                                <input type="date" value="" id="elms-filter-date-to" class="form-control" name="elms-filter-date-to" value="<?php echo date('Y-m-d'); ?>" />
+                                <input type="date" id="elms-filter-date-to" class="form-control" name="elms-filter-date-to" value="<?php echo date('Y-m-d'); ?>" />
                             </div>
                         </div>
 
@@ -53,20 +54,19 @@ if(isset($_POST['export'])){
                                 <label for="">Source</label>
                                 <select id="elms-filter-select-source" name="elms-filter-select-source">
                                     <option value="All">All</option>
-                                    <option value="Ask Our Experts">Ask Our Experts</option>
-                                    <option value="Schedule an Appointment">Schedule an Appointment</option>
-                                    <option value="Telephone Counselling">Telephone Counselling</option>
-                                    <option value="Quick Enquiry">Quick Enquiry</option>
+                                    <option value="AskOurExperts">Ask Our Experts</option>
+                                    <option value="ScheduleanAppointment">Schedule an Appointment</option>
+                                    <option value="TelephoneCounselling">Telephone Counselling</option>
+                                    <option value="QuickEnquiry">Quick Enquiry</option>
                                 </select>
                             </div>
                         </div>
 
                         <div class="col-3">
-                            <input type="submit" value="Filter" name="elms-filter-submit" id="elms-filter-submit" />
+                            <input type="button" value="Filter" name="elms-filter-submit" id="elms-filter-submit" />
                         </div>
 
-                    </div>
-                </form>
+                    </div> 
             </div>
 
             <div class="col-3">
@@ -77,6 +77,7 @@ if(isset($_POST['export'])){
             </div>
 
         </div>
+        </form>
     </div>
 
 
@@ -174,25 +175,27 @@ if(isset($_POST['export'])){
                         <th></th>
                     </tr>
 
+                    <?php 
+                   
+                    foreach (glob("./upload/*") as $filename) { ?>
                     <tr>
-                        <td>Kansaz.com - Ask our expert - 1 October, 2016 - 9:58 PM</td>
-                        <td><a class="download-btn" href="#"><i class="fa fa-cloud-download"></i></a></td>
+                        <td> <?php
+                      
+                        $fil=basename($filename);
+                         $data_found = 0;
+                         $handle = fopen($filename, "r");
+                         while ($data = fgetcsv($handle))
+                         {
+                            if ($data[1] != '')
+                            {
+                              $data_found ++;
+                            }
+                          }
+                        echo  "$fil <b>(</b>".$data_found."<b>)</b>";
+                   ?></td>
+                        <td><a class="download-btn" href="<?php echo $filename; ?>" download><i class="fa fa-cloud-download"></i></a></td>
                     </tr>
-
-                    <tr>
-                        <td>Kansaz.com - Ask our expert - 1 October, 2016 - 9:58 PM</td>
-                        <td><a class="download-btn" href="#"><i class="fa fa-cloud-download"></i></a></td>
-                    </tr>
-
-                    <tr>
-                        <td>Kansaz.com - Ask our expert - 1 October, 2016 - 9:58 PM</td>
-                        <td><a class="download-btn" href="#"><i class="fa fa-cloud-download"></i></a></td>
-                    </tr>
-
-                    <tr>
-                        <td>Kansaz.com - Ask our expert - 1 October, 2016 - 9:58 PM</td>
-                        <td><a class="download-btn" href="#"><i class="fa fa-cloud-download"></i></a></td>
-                    </tr>
+                    <?php } ?>
                 </table>
             </div>
         </div>

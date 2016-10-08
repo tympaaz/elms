@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once('Leads.php');
+require_once('classes/Leads.php');
 $obj=new Leads();
 $source=$_SESSION['source'];
 $datefrom=$_SESSION['date'];
@@ -9,11 +9,11 @@ date_default_timezone_set("Asia/Calcutta");
 $date=date('d-m-Y');
 $time=date('h.i.s-A');
 if(!empty($source)){
-    $tmp_file = "Kansaz"."_".$source."_".$date."_".$time.".csv";
+   tmp_file = "Kansaz_".$source."_".$date."_".$time.".csv";
 }else{
-     $tmp_file = "Kansaz"."_All_".$date."_".$time.".csv";
+     $tmp_file = "Kansaz_"."_All_".$date."_".$time.".csv";
 }
-$filename="Kansaz".$date."-".$time.".csv";
+$filename= "Kansaz_".$source."_".$date."_".$time.".csv";
 $fp = fopen('php://output', 'w');
 $ff=fopen('upload/'.$tmp_file,'w');
 header('Content-type: application/csv');
@@ -24,5 +24,5 @@ header('Content-Disposition: attachment; filename='.$filename);
          fputcsv($fp, $row);
     }
     $update=$obj->Updated($datefrom,$dateto,$source);
-     ?>
+?>
 
