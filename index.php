@@ -133,8 +133,8 @@ if(isset($_POST['export'])){
 
             <?php if(empty($today)){ ?>
                     <tr>
-                        <td colspan="4">
-                              <?php  echo "There Is No Records"; ?>
+                        <td class="no-border record" colspan="8">
+                              <?php echo "There are no new records"; ?>
                         </td>
                     </tr>
            <?php    
@@ -212,7 +212,7 @@ if(isset($_POST['export'])){
                               $data_found ++;
                             }
                           }
-                        echo  "$fil <b>(</b>".$data_found."<b>)</b>";
+                        echo  "$fil <span class='el-count'>".$data_found."</span>";
                    ?></td>
                         <td><a class="download-btn" href="<?php echo $filename; ?>" download><i class="fa fa-cloud-download"></i></a></td>
                     </tr>

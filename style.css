@@ -110,12 +110,27 @@ body {
     margin-top: 12px;
 }
 
-.welcome-message b {
+.welcome-message .message {
     font-size: 16px;
     font-weight: 300;
     color: #000;
     line-height: 24px;
     text-transform: capitalize;
+}
+
+.welcome-message .message b {
+    font-weight: 500;
+}
+
+.welcome-message .message .logout {
+    font-style: italic;
+    font-size: 12px;
+    color: #000000;
+    background: #fdea5c;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    padding: 0 4px;
 }
 
 .welcome-message p {
@@ -166,9 +181,9 @@ nav.primary ul li a:hover {
     margin: 30px 0;
 }
 
-.filter .col-3 {
-    margin: 0;
-    padding: 0;
+.filter>.col-3 {
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 .filter .col-9 {
@@ -290,7 +305,7 @@ nav.primary ul li a:hover {
 
 .export-as {
     width: 100%;
-    padding: 18px 10px;
+    padding: 25px 10px;
     background: #fdea5c;
     border-bottom: 3px solid #fadc27;
     font-size: 14px;
@@ -301,6 +316,10 @@ nav.primary ul li a:hover {
 
 .export-as:hover {
     background: #fadc27;
+}
+
+.export-as.disabled:hover {
+    background: #fdea5c;
 }
 
 .export-as .fa {
@@ -357,7 +376,8 @@ nav.primary ul li a:hover {
     color: #242424;
 }
 
-.enq-id {
+.enq-id,
+{
     font-size: 10px;
     margin-top: 5px;
     background: #e1e1e1;
@@ -429,6 +449,15 @@ nav.primary ul li a:hover {
     margin-bottom: 40px;
 }
 
+.record {
+    text-align: center;
+    font-size: 12px;
+    /* border-top: 1px dashed #ccc !important; */
+    border-bottom: 1px dashed #ccc !important;
+    margin-top: 10px;
+    background: #f9f9f9;
+}
+
 
 /* Recently Exported */
 
@@ -452,6 +481,7 @@ nav.primary ul li a:hover {
 .re-lists tr td {
     position: relative;
     border-bottom: 1px solid #fbf8ec;
+    font-size: 13px;
 }
 
 .re-lists tr td .download-btn {
@@ -461,6 +491,19 @@ nav.primary ul li a:hover {
     top: 0;
     right: 0;
     padding: 5px 15px;
+}
+
+.el-count {
+    font-size: 10px;
+    background: #545454;
+    padding: 0 5px;
+    display: inline-block;
+    line-height: 15px;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    color: #ffffff;
+    margin-left: 5px;
 }
 
 

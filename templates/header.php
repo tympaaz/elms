@@ -13,7 +13,7 @@ $logo=$obj->get_logo();
 <html>
 
 <head>
-    <title>Email List Management System - Login Page</title>
+    <title>Email List Management System</title>
 
     <!-- GOOGLE FONTS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -47,7 +47,7 @@ $logo=$obj->get_logo();
                     </div>
                     <div class="col-9">
                         <div class="welcome-message right">
-                            <b>Welcome <?php echo $_SESSION['user']; ?>, <a href="logout.php">Logout</a></b>
+                            <span class="message">Welcome <b><?php echo $_SESSION['user']; ?></b>, <a class="logout" href="logout.php">Logout</a></span>
                             <p> <span id="hours">0</span>:<span id="minutes">0</span></p>
                         </div>
                     </div>
