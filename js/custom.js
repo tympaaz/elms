@@ -1,28 +1,32 @@
 $(document).ready(function(e) {
-
-
+    $('#export').click(function(){
+    $('#message').html('<div id="alertFadeOut" style="color: green">Exported Successfully.</div>'); // Diplay message with a fadeout
+    $('#alertFadeOut').fadeOut(3000, function () {
+    $('#alertFadeOut').text('');
+          }); 
+    });
+    $('#elms-bt-submitt').click(function(){
+        $('#message').html('<div id="alertFadeOut" style="color: green">Password Changed Successfully.</div>'); // Diplay message with a fadeout
+    $('#alertFadeOut').fadeOut(30000, function () {
+    $('#alertFadeOut').text('');
+    })
     $('#elms-filter-select-source').each(function() {
         var $this = $(this),
-            numberOfOptions = $(this).children('option').length;
-
+        numberOfOptions = $(this).children('option').length;
         $this.addClass('select-hidden');
         $this.wrap('<div class="select"></div>');
         $this.after('<div class="select-styled"></div>');
-
         var $styledSelect = $this.next('div.select-styled');
         $styledSelect.text($this.children('option').eq(0).text());
-
         var $list = $('<ul />', {
             'class': 'select-options'
         }).insertAfter($styledSelect);
-
         for (var i = 0; i < numberOfOptions; i++) {
             $('<li />', {
                 text: $this.children('option').eq(i).text(),
                 rel: $this.children('option').eq(i).val()
             }).appendTo($list);
         }
-
         var $listItems = $list.children('li');
 
         $styledSelect.click(function(e) {
@@ -55,7 +59,7 @@ $(document).ready(function(e) {
         var date = $('#elms-filter-date-from').val();
         var dateto = $('#elms-filter-date-to').val();
         var source = $('#elms-filter-select-source').val();
-
+     
         if (dateto < date) {
             alert('2nd date picker must be greater than 1st one.')
         } else {
@@ -64,21 +68,28 @@ $(document).ready(function(e) {
             var dateto = $('#elms-filter-date-to').val();
 
             $.ajax({
-                url: "http://localhost/elms/ajax.php/",
+                url: "http://localhost:1234/elms/ajax.php/",
                 type: 'POST',
                 data: ({ date: date, dateto: dateto, source: source }),
                 success: function(data) {
+//                    alert('success');
                     obj = jQuery.parseJSON(data);
                     $('.sub-title').html(source);
                     $('#new').html(obj.length);
                     $('#filter').empty();
-
                     $('#filter').append('<tr><th class="no-text"></th><th class="center">S.No</th><th>Name</th><th>Email Address</th><th>Phone Number</th><th>Interested Country</th><th>Message</th><th class="no-text"></th></tr>');
                     var counter = 0;
+                    console.log(obj);
+                    if(obj == ""){
+                        $('#filter').append('<tr><td  colspan="4">There Is No records</td></tr>');
+                         $('#export').addClass('disabled').attr('disabled',true);
+                    
+                    }else{
                     $.each(obj, (function(res, k) {
                         $('#filter').append('<tr><td class="center"><input type="checkbox" name="checked_id[]" class="checkbox" value="' + k.id + '"/></td><td class="center" value="' + k.id + '">' + (++counter) + "<span class='enq-id'>" + k.id + "</span>" + '</td><td value="' + k.name + '">' + k.name + '</td><td value="' + k.email + '">' + k.email + '</td><td value="' + k.phone + '">' + k.phone + '</td><td value="' + k.interested_country + '">' + k.interested_country + '</td><td value="' + k.message + '">' + k.message + '</td><td><a href="delete.php?id=' + k.id + '"class="fa fa-trash"></a></td></tr>')
-
+                     $('#export').attr('disabled',false);
                     }));
+                }
                 }
             })
         }
@@ -86,7 +97,7 @@ $(document).ready(function(e) {
     $("#checkAll").click(function() {
         $('input:checkbox').not(this).prop('checked', this.checked);
     });
-
+       
 
     function ajaxcall() {
         $.ajax({

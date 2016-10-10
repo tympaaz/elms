@@ -68,6 +68,7 @@ require_once('classes/Leads.php');
 </head>
 <body class="elms-login-page">
 	<div class="container">
+            <span id="message"></span>
 		<div class="row">
 			<div class="col-4 auto">
 				<div class="logo center">

@@ -7,7 +7,6 @@ $date= date('Y-m-d');
 class Leads extends Application{
     private $_table="elms_enquiries";
     private $_table1="elms_users";
-    private $_table2="elms_uploads";
     private $_table3="elms_settings";
     public $_id;
    
@@ -46,55 +45,65 @@ class Leads extends Application{
 		}
                 return false;
 }
-public function filter_by_date($date,$dateto,$source){
-    if(!empty($date) && !empty($dateto) && !empty($source)){
-     $sql="select * from `{$this->_table}` where (date BETWEEN '$date' AND '$dateto') AND source='$source' ";
-        return $this->db->fetchAll($sql);   
-        return true;   
-    }else
-    if(!empty($date) && !empty($dateto)){
-       //        $sql="select * from `{$this->_table}` WHERE (date BETWEEN ".$this->db->escape($date)." AND ".$this->db->escape($dateto).")  ";
-      $sql="select * from `{$this->_table}` where date BETWEEN '$date' AND '$dateto'";
-        return $this->db->fetchAll($sql);   
-        return true;
-    }else if(!empty($source)){
-        $sql="select * from `{$this->_table}` where source='$source'";
-        return $this->db->fetchAll($sql);   
-        return true;
-    }
-    return false;
-}
+//public function filter_by_date($date,$dateto,$source){
+//    if(!empty($date) && !empty($dateto) && !empty($source)){
+//     $sql="select * from `{$this->_table}` where (date BETWEEN '$date' AND '$dateto') AND source='$source' ";
+//        return $this->db->fetchAll($sql);   
+//        return true;   
+//    }else
+//    if(!empty($date) && !empty($dateto)){
+//       //        $sql="select * from `{$this->_table}` WHERE (date BETWEEN ".$this->db->escape($date)." AND ".$this->db->escape($dateto).")  ";
+//      $sql="select * from `{$this->_table}` where date BETWEEN '$date' AND '$dateto'";
+//        return $this->db->fetchAll($sql);   
+//        return true;
+//    }else if(!empty($source)){
+//        $sql="select * from `{$this->_table}` where source='$source'";
+//        return $this->db->fetchAll($sql);   
+//        return true;
+//    }
+//    return false;
+//}
 public function Getall_leads($date,$dateto,$source){
-    if(!empty($date) && !empty($dateto) && !empty($source)){
+    if(!empty($date) && !empty($dateto) && $source != "All"){
      $sql="select * from `{$this->_table}` where (date BETWEEN '$date' AND '$dateto') AND source='$source' AND exprt=0 And trash=0";
         return $this->db->fetchAll($sql);  
         return true;   
     }else
-    if(!empty($date) && !empty($dateto)){
+    if(!empty($date) && !empty($dateto) && $source == "All"){
        //        $sql="select * from `{$this->_table}` WHERE (date BETWEEN ".$this->db->escape($date)." AND ".$this->db->escape($dateto).")  ";
       $sql="select * from `{$this->_table}` where date BETWEEN '$date' AND '$dateto' AND exprt=0 AND trash=0";
         return $this->db->fetchAll($sql);  
         return true;
     }else 
-        if(!empty($source)){
+        if($source !="All"){
         $sql="select * from `{$this->_table}` where source='$source' AND exprt=0 AND trash=0";
         return $this->db->fetchAll($sql);
         return true;
+    }else if($date== "" && $dateto == "" && $source == "All"){
+        $sql="select * from `{$this->_table}` where exprt=0 AND trash=0";
+        return $this->db->fetchAll($sql);
+        return true;
+    }else{
+        echo "There Is No Leads";
     }
     return false;
 }
      public function Updated($date,$dateto,$source){
-           if(!empty($date) && !empty($dateto) && !empty($source)){
+           if(!empty($date) && !empty($dateto) && $source !="All"){
         $update="update `{$this->_table}` set exprt=1 where (date BETWEEN '$date' AND '$dateto') AND source='$source' ";
       return $this->db->query($update);
         return true;   
     }else
-    if(!empty($date) && !empty($dateto)){
+    if(!empty($date) && !empty($dateto) && $source == "All"){
          $update="update `{$this->_table}` set exprt=1 where date BETWEEN '$date' AND '$dateto'";
       return $this->db->query($update);
         return true;
-    }else if(!empty($source)){ 
+    }else if($source != "All"){ 
         $update="update `{$this->_table}` set exprt=1 where source='$source'";
+      return $this->db->query($update);
+        return true;
+    }else if($source == "All"){
+         $update="update `{$this->_table}` set exprt=1 ";
       return $this->db->query($update);
         return true;
     }

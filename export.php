@@ -9,7 +9,7 @@ date_default_timezone_set("Asia/Calcutta");
 $date=date('d-m-Y');
 $time=date('h.i.s-A');
 if(!empty($source)){
-   tmp_file = "Kansaz_".$source."_".$date."_".$time.".csv";
+   $tmp_file = "Kansaz_".$source."_".$date."_".$time.".csv";
 }else{
      $tmp_file = "Kansaz_"."_All_".$date."_".$time.".csv";
 }

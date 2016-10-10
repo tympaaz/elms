@@ -1,26 +1,29 @@
 <?php 
 session_start();
+$error =$error_missmatch=$error_invalid=$success_pass=$success="";
 if (isset($_SESSION['user'])) {
 require_once('templates/header.php'); 
 require_once('classes/Leads.php');
 if(isset($_POST['btn'])){
     $target= 'images/'.$_FILES['elms-bt-upload']['name'];
     $theme= 'css/themes/'.$_POST['elms-bt-theme'].".css";
+    $file=$_FILES['elms-bt-upload']['name'];
+    $theme=$_POST['elms-bt-theme'];
     $req= array(
         'logo_path'=>$target,
         'theme_path'=>$theme
     );
 
-    if(!empty($req)){
+    if(!empty($file) && !empty($theme)){
         $uploads_dir = 'images/';
         (move_uploaded_file($_FILES['elms-bt-upload']['tmp_name'], $uploads_dir.$_FILES['elms-bt-upload']['name']));
         $obj=new Leads();
         $obj->insert($req);
+         $success = "<div class='success message'>". 'Saved Successfully'. "</div>";
     }else{
-        echo"please Choose File";
+        $error = "<div class='error message'>". 'Please Choose File'. "</div>";
     }
 }
-
 if(isset($_POST['submit'])){
     $obj=new Leads();
     $old_pass=$_POST['elms-cp-oldpass'];
@@ -30,18 +33,18 @@ if(isset($_POST['submit'])){
     $id=$login[0][0];
     $new_pass=$_POST['elms-cp-newpass'];
     $cnfrm_pass=$_POST['elms-cp-confirm-newpass'];
-    
     if($old_pass == $pass){
          if($new_pass == $cnfrm_pass){
              $obj->updatepass($id,$new_pass);
              unset($_SESSION["user"]);
              header("location:classes/Auth.php");
+             $success_pass = "<div class='success message'>". 'Password Changed Successfully'. "</div>";
          }
          else{
-             echo "New Password & Confirm password Missmatch";
+              $error_missmatch = "<div class='error message'>". 'Password Mismatch'. "</div>";
          }
      }else{
-         echo"Enter Valid Password";
+         $error_invalid = "<div class='error message'>". 'Please Enter Valid Password'. "</div>";
      }   
 }
 ?>
@@ -75,7 +78,8 @@ if(isset($_POST['submit'])){
                             <div class="save-options">
                                 <input type="submit" value="Save" name="btn" id="elms-bt-submit" />
                             </div>
-
+                            <?php echo $error; ?>
+                             <?php echo $success; ?>
                             <!--
                             -------------------------    
                             * Success Message
@@ -119,9 +123,10 @@ if(isset($_POST['submit'])){
                             </div>
 
                             <div class="save-options">
-                                <input type="submit" value="Save" name="submit" id="elms-bt-submit" />
+                                <input type="submit" value="Save" name="submit" id="elms-bt-submitt" />
                             </div>
-
+                              <?php echo $error_missmatch; ?>
+                             <?php echo $error_invalid; ?>
                             <!--
                             -------------------------    
                             * Success Message

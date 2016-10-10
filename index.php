@@ -13,6 +13,7 @@ $leads=$obj->getAllleads($date);
 $new=$obj->new_leads();
 $old=$obj->old_leads();
 $today=$obj->today_leads($date);
+//print_r($today);
 if(isset($_POST['submit'])){
     if(isset($_POST['checked_id'])){
     $deletemul=$obj->Delete();
@@ -21,6 +22,7 @@ if(isset($_POST['submit'])){
 }
 }
 if(isset($_POST['export'])){    
+   
    $_SESSION['date']=$_POST['elms-filter-date-from'];
     $_SESSION['dateto']=$_POST['elms-filter-date-to'];
     $_SESSION['source']=$_POST['elms-filter-select-source'];
@@ -31,6 +33,7 @@ if(isset($_POST['export'])){
 
     <div class="container">
     <form id="filter-form" action="" method="post">
+        <span id="message"></span>
         <div class="filter row">
             <div class="col-9">
                 
@@ -70,10 +73,17 @@ if(isset($_POST['export'])){
             </div>
 
             <div class="col-3">
+                <?php if(!empty($today)){?>
                 <button class="export-as" name="export" id="export">
                     <i class="fa fa-download"></i><br/>
                     Export as .CSV
                 </button>
+                <?php }else{?>
+                <button class="export-as disabled" name="export" id="export" disabled="true">
+                    <i class="fa fa-download"></i><br/>
+                    Export as .CSV
+                </button>
+                <?php } ?>
             </div>
 
         </div>
@@ -121,8 +131,17 @@ if(isset($_POST['export'])){
                         <th class="no-text"></th>
                     </tr>
 
-            <?php foreach($today as $lead){ ?>
-            <tr>
+            <?php if(empty($today)){ ?>
+                    <tr>
+                        <td colspan="4">
+                              <?php  echo "There Is No Records"; ?>
+                        </td>
+                    </tr>
+           <?php    
+            }else{
+            foreach($today as $lead){ ?>
+              
+            <tr class="enq">
                 <td><input type="checkbox" name="checked_id[]" class="checkbox" value="<?php echo $lead['id']; ?>"/></td>
                 <td class="center">
                     <?php
@@ -159,7 +178,9 @@ if(isset($_POST['export'])){
                     <a href="delete.php?id=<?php echo $lead['id'] ?>" class="fa fa-trash"></a>
                 </td>
             </tr>
-            <?php } ?>
+                <?php 
+            }   } ?>
+           
                 </table>
             </div>
         </div>
