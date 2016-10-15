@@ -4,8 +4,8 @@ class Database{
  
 	private $_host = "localhost";
 	private $_user = "root"; 
-	private $_password = "";
-        private $_db="elms_dev";
+	private $_password = "1112";
+        private $_db="kansaz";
 	private $_conndb    = false;  
 	public $_last_query  = null;  
         public $_insert_keys   = array();  

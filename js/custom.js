@@ -1,3 +1,5 @@
+
+
 $(document).ready(function(e) {
     $('#export').click(function() {
         $('#message').html('<div id="alertFadeOut" style="color: green">Exported Successfully.</div>'); // Diplay message with a fadeout
@@ -53,6 +55,9 @@ $(document).ready(function(e) {
     setInterval(ajaxcall, 1000);
 
     $('#elms-filter-submit').click(function() {
+           
+       
+//     alert('adasd');
         var date = $('#elms-filter-date-from').val();
         var dateto = $('#elms-filter-date-to').val();
         var source = $('#elms-filter-select-source').val();
@@ -63,17 +68,20 @@ $(document).ready(function(e) {
             //              $('#myVariable').datepicker({dateFormat: 'dd/mm/yy'});
             var date = $('#elms-filter-date-from').val();
             var dateto = $('#elms-filter-date-to').val();
-
+          $('#filter').html('<img src="http://preloaders.net/preloaders/287/Filling%20broken%20ring.gif" class="img"> ');
             $.ajax({
-                url: "http://localhost/elms/ajax.php/",
+                url: "http://localhost:1234/elms/ajax.php/",
                 type: 'POST',
                 data: ({ date: date, dateto: dateto, source: source }),
                 success: function(data) {
-                    //                    alert('success');
+//                                        alert('success');
                     obj = jQuery.parseJSON(data);
+                    console.log(obj);
+                     setTimeout(function () {
                     $('.sub-title').html(source);
                     $('#new').html(obj.length);
                     $('#filter').empty();
+                  
                     $('#filter').append('<tr><th class="no-text"></th><th class="center">S.No</th><th>Name</th><th>Email Address</th><th>Phone Number</th><th>Interested Country</th><th>Message</th><th class="no-text"></th></tr>');
                     var counter = 0;
                     console.log(obj);
@@ -87,10 +95,11 @@ $(document).ready(function(e) {
                             $('#export').removeClass('disabled').attr('disabled', false);
                         }));
                     }
+                }, 1000);
                 }
-            })
+            });
         }
-    })
+    });
     $("#checkAll").click(function() {
         $('input:checkbox').not(this).prop('checked', this.checked);
     });

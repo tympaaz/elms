@@ -30,7 +30,7 @@ if(isset($_POST['export'])){
 }
 ?>
 <?php require_once('templates/header.php'); ?>
-
+    
     <div class="container">
     <form id="filter-form" action="" method="post">
         <span id="message"></span>
@@ -68,7 +68,7 @@ if(isset($_POST['export'])){
                         <div class="col-3">
                             <input type="button" value="Filter" name="elms-filter-submit" id="elms-filter-submit" />
                         </div>
-
+                        
                     </div> 
             </div>
 
@@ -119,6 +119,7 @@ if(isset($_POST['export'])){
                 <div class="enquiries-options">
                     <input type="checkbox" id="checkAll" />Select All<span class="sep">|</span><input type="submit" name="submit" id="submit" value="Delete All" />
                 </div>
+            
                 <table class="enquiries-tbl" id="filter">
                     <tr>
                         <th class="no-text"></th>
